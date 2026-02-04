@@ -29,12 +29,17 @@ def add_contact(name, number):
     return f"{name} added successfully."
 
 def show_all_contacts():
-    with open("contacts.json", "r") as f:
+    with Path("contacts.json").open() as f:
         contacts = json.load(f)
     return contacts
 
 def search_contact(name):
-    pass
+    with Path("contacts.json").open() as f:
+        contacts = json.load(f)
+    try:
+        return f"{name}'s phone number is: {contacts[name]}"
+    except:
+        return f"I can't find {name}'s number..."
 
 def delete_contact(name):
     pass
