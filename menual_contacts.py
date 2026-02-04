@@ -6,7 +6,6 @@ def create_a_contact_file():
         with open("contacts.json", "w", encoding="utf-8") as f:
             json.dump({ }, f, indent="\t")
 
-
 def show_manu():
     return """
 1. Add contact
@@ -29,11 +28,10 @@ def add_contact(name, number):
         json.dump(contacts, f, indent="\t")
     return f"{name} added successfully."
 
-def show_contacts():
-    pass
-
-def save_contact(name, number):
-    pass
+def show_all_contacts():
+    with open("contacts.json", "r") as f:
+        contacts = json.load(f)
+    return contacts
 
 def search_contact(name):
     pass
