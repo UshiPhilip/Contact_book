@@ -17,13 +17,13 @@ def show_manu():
     7. Exit
 """
 
-def add_contact(name, number):
+def add_contact(name, number, email):
     with Path("contacts.json").open() as f:
         contacts = json.load(f)
     for n in contacts.keys():
         if n == name:
             return f"{name} is already exist."
-    contacts[name] = number
+    contacts[name] = [number, email]
 
     with Path("contacts.json").open("w") as f:
         json.dump(contacts, f, indent="\t")

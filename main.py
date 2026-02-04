@@ -14,7 +14,17 @@ while True:
     if choice == "1":
         name = input("Enter a contact name: ")
         number = input(f"Enter {name}'s number: ")
-        print(add_contact(name, number))
+        while True:
+            email = "No email address"
+            choice = input("Do you want to add a email address [y / n]? ")
+            if choice.lower() not in ["y", "n"]:
+                print("Please enter 'y' or 'n'")
+            else:
+                if choice.lower() == "y":
+                    email = input("Enter an email address: ")
+                break
+
+        print(add_contact(name, number, email))
 
     elif choice == "2":
         contacts = show_all_contacts()
@@ -22,7 +32,7 @@ while True:
             print(contacts)
         else:
             for na, nu in contacts.items():
-                print(f"name : {na} - number : {nu}")
+                print(f"name: {na} | number: {nu[0]} | email: {nu[1]}")
 
     elif choice == "3":
         name = input("Enter a contact name to search: ")
