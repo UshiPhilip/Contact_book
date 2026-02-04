@@ -33,9 +33,6 @@ def show_all_contacts():
         contacts = json.load(f)
     return contacts
 
-def save_contact(name, number):
-    pass
-
 def search_contact(name):
     pass
 
