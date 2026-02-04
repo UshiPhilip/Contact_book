@@ -8,13 +8,13 @@ def create_a_contact_file():
 
 def show_manu():
     return """
-1. Add contact
-2. Show all contacts
-3. Search contact
-4. Delete contact
-5. Edit contact
-6. Exit
-    """
+    1. Add contact
+    2. Show all contacts
+    3. Search contact
+    4. Delete contact
+    5. Edit contact
+    6. Exit
+"""
 
 def add_contact(name, number):
     with Path("contacts.json").open() as f:
@@ -42,7 +42,17 @@ def search_contact(name):
         return f"I can't find {name}'s number..."
 
 def delete_contact(name):
-    pass
+    with Path("contacts.json").open() as f:
+        contacts = json.load(f)
+    try:
+        del contacts[name]
+        with Path("contacts.json").open("w") as f:
+            json.dump(contacts, f, indent="\t")
+            return f"{name} was deleted successfully."
+    except KeyError:
+        return f"{name} not exist."
+    except:
+        return "delete contact failed..."
 
 def edit_contact(old_name, new_name, new_number):
     pass
