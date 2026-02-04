@@ -6,7 +6,6 @@ def create_a_contact_file():
         with open("contacts.json", "w", encoding="utf-8") as f:
             json.dump({ }, f, indent="\t")
 
-
 def show_manu():
     return """
 1. Add contact
