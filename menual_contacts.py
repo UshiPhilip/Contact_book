@@ -28,8 +28,10 @@ def add_contact(name, number):
         json.dump(contacts, f, indent="\t")
     return f"{name} added successfully."
 
-def show_contacts():
-    pass
+def show_all_contacts():
+    with open("contacts.json", "r") as f:
+        contacts = json.load(f)
+    return contacts
 
 def save_contact(name, number):
     pass

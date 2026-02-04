@@ -1,4 +1,4 @@
-from menual_contacts import create_a_contact_file, show_manu, add_contact, show_contacts, search_contact, delete_contact, edit_contact
+from menual_contacts import create_a_contact_file, show_manu, add_contact, show_all_contacts, search_contact, delete_contact, edit_contact
 
 print("Welcome To Our Contact Book!")
 create_a_contact_file()
@@ -17,7 +17,9 @@ while True:
         print(add_contact(name, number))
 
     elif choice == "2":
-        print(show_contacts())
+        contacts = show_all_contacts()
+        for na, nu in contacts.items():
+            print(f"name : {na} - number : {na}")
 
     elif choice == "3":
         name = input("Enter a contact name to search: ")
