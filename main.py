@@ -18,8 +18,11 @@ while True:
 
     elif choice == "2":
         contacts = show_all_contacts()
-        for na, nu in contacts.items():
-            print(f"name : {na} - number : {na}")
+        if type(contacts) == str:
+            print(contacts)
+        else:
+            for na, nu in contacts.items():
+                print(f"name : {na} - number : {nu}")
 
     elif choice == "3":
         name = input("Enter a contact name to search: ")
@@ -30,10 +33,9 @@ while True:
         print(delete_contact(name))
 
     elif choice == "5":
-        old_name = input("Enter a contact name to edit: ")
-        new_name = input("Enter a new name to edit: ")
+        name = input("Enter a contact's name to edit: ")
         new_number = input("Enter a new number to edit: ")
-        print(edit_contact(old_name, new_name, new_number))
+        print(edit_contact(name, new_number))
 
     else:
         break

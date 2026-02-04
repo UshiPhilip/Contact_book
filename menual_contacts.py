@@ -31,7 +31,7 @@ def add_contact(name, number):
 def show_all_contacts():
     with Path("contacts.json").open() as f:
         contacts = json.load(f)
-    return contacts
+    return contacts if contacts else "The contacts book is empty..."
 
 def search_contact(name):
     with Path("contacts.json").open() as f:
@@ -54,5 +54,15 @@ def delete_contact(name):
     except:
         return "delete contact failed..."
 
-def edit_contact(old_name, new_name, new_number):
-    pass
+def edit_contact(name, number):
+    with Path("contacts.json").open() as f:
+        contacts = json.load(f)
+    if name not in contacts.keys():
+        return f"I can't find {name} in the contacts book"
+    try:
+        contacts[name] = number
+        with Path("contacts.json").open("w") as f:
+            json.dump(contacts, f, indent="\t")
+            return f"{name}'s new number is {number}"
+    except:
+        return f"Edit {name}'s number failed..."
