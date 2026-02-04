@@ -13,7 +13,8 @@ def show_manu():
     3. Search contact
     4. Delete contact
     5. Edit contact
-    6. Exit
+    6. Sorting contacts book by alphabet
+    7. Exit
 """
 
 def add_contact(name, number):
@@ -66,3 +67,11 @@ def edit_contact(name, number):
             return f"{name}'s new number is {number}"
     except:
         return f"Edit {name}'s number failed..."
+
+def sorting_by_alphabet():
+    with Path("contacts.json").open() as f:
+        contacts = json.load(f)
+    contacts = sorted(contacts.items())
+    contacts = dict(contacts)
+    return contacts if contacts else "The contacts book is empty..."
+
