@@ -22,7 +22,8 @@ def show_manu():
     6. Sorting contacts book by alphabet
     7. Create backup
     8. Export pretty
-    9. Exit
+    9. Show menu
+    10. Exit
 """
 
 def add_contact(name, number, email):
@@ -91,7 +92,7 @@ def create_backup():
 
 def export_pretty():
     contacts = get_contacts()
-    time = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M")
+    time = datetime.datetime.now().strftime("%d.%m.%Y_%H-%M")
     export = str(time) + ".csv"
     with Path(export).open("w", newline="", encoding="utf-8") as f:
         write = csv.writer(f)

@@ -3,11 +3,11 @@ from menual_contacts import *
 print("Welcome To Our Contact Book!")
 create_a_contact_file()
 
+print(show_manu())
 while True:
-    print(show_manu())
-    choice = input("Please enter your choice: ")
+    choice = input("\nPlease enter your choice: ")
 
-    if choice not in ["1", "2", "3", "4", "5", "6", "7", "8", "9"]:
+    if choice not in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]:
         print("Please enter a valid number!")
         continue
 
@@ -53,13 +53,16 @@ while True:
             print(contacts)
         else:
             for na, nu in contacts.items():
-                print(f"name : {na} - number : {nu}")
+                print(f"name: {na} | number: {nu[0]} | email: {nu[1]}")
 
     elif choice == "7":
         print(create_backup())
 
     elif choice == "8":
         print(export_pretty())
+
+    elif choice == "9":
+        print(show_manu())
 
     else:
         break
