@@ -14,7 +14,8 @@ def show_manu():
     4. Delete contact
     5. Edit contact
     6. Sorting contacts book by alphabet
-    7. Exit
+    7. Create backup
+    8. Exit
 """
 
 def add_contact(name, number, email):
@@ -75,3 +76,11 @@ def sorting_by_alphabet():
     contacts = dict(contacts)
     return contacts if contacts else "The contacts book is empty..."
 
+def create_backup():
+    if not Path("contacts.json").exists():
+        return "The contacts book doesn't exist."
+    with Path("contacts.json").open() as f:
+        contacts = json.load(f)
+    with Path("backup.txt").open("w") as f:
+        json.dump(contacts, f, indent="\t")
+    return "Backup file created as 'backup.txt' file."
