@@ -96,7 +96,9 @@ def export_pretty():
     export = str(time) + ".csv"
     with Path(export).open("w", newline="", encoding="utf-8") as f:
         write = csv.writer(f)
-        write.writerow(["contact name", "phone number", "email address"])
+        id = 1
+        write.writerow(["ID","Contact Name", "Phone Number", "Email Address"])
         for name, info in contacts.items():
-            write.writerow([name, info[0], info[1]])
+            write.writerow([id, name, info[0], info[1]])
+            id += 1
         return f"Export file created as {export} file"
