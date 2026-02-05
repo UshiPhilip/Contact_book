@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 import datetime
+import csv
 
 def create_a_contact_file():
     if not Path("contacts.json").exists():
@@ -20,7 +21,8 @@ def show_manu():
     5. Edit contact
     6. Sorting contacts book by alphabet
     7. Create backup
-    8. Exit
+    8. Export pretty
+    9. Exit
 """
 
 def add_contact(name, number, email):
@@ -86,3 +88,14 @@ def create_backup():
             f.write(str(line))
             f.write("\n")
     return f"Backup file created as '{time}.txt' file."
+
+def export_pretty():
+    contacts = get_contacts()
+    time = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M")
+    export = str(time) + ".csv"
+    with Path(export).open("w", newline="", encoding="utf-8") as f:
+        write = csv.writer(f)
+        write.writerow(["contact name", "phone number", "email address"])
+        for name, info in contacts.items():
+            write.writerow([name, info[0], info[1]])
+        return f"Export file created as {export} file"
