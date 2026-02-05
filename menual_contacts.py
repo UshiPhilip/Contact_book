@@ -14,16 +14,16 @@ def get_contacts():
 
 def show_manu():
     return """
-    1. Add contact
-    2. Show all contacts
-    3. Search contact
-    4. Delete contact
-    5. Edit contact
-    6. Sorting contacts book by alphabet
-    7. Create backup
-    8. Export pretty
-    9. Show menu
-    10. Exit
+    1. Add contact.
+    2. Show all contacts.
+    3. Search contact.
+    4. Delete contact.
+    5. Edit contact.
+    6. Sorting contacts book by alphabet.
+    7. Create backup.
+    8. Export pretty.
+    9. Show menu.
+    10. Exit.
 """
 
 def add_contact(name, number, email):
