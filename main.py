@@ -1,4 +1,4 @@
-from menual_contacts import create_a_contact_file, show_manu, add_contact, show_all_contacts, search_contact, delete_contact, edit_contact, sorting_by_alphabet
+from menual_contacts import create_a_contact_file, show_manu, add_contact, show_all_contacts, search_contact, delete_contact, edit_contact, sorting_by_alphabet, create_backup
 
 print("Welcome To Our Contact Book!")
 create_a_contact_file()
@@ -7,7 +7,7 @@ while True:
     print(show_manu())
     choice = input("Please enter your choice: ")
 
-    if choice not in ["1", "2", "3", "4", "5", "6", "7"]:
+    if choice not in ["1", "2", "3", "4", "5", "6", "7", "8"]:
         print("Please enter a valid number!")
         continue
 
@@ -54,6 +54,9 @@ while True:
         else:
             for na, nu in contacts.items():
                 print(f"name : {na} - number : {nu}")
+
+    elif choice == "7":
+        print(create_backup())
 
     else:
         break
