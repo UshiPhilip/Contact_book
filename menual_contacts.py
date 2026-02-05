@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+import datetime
 
 def create_a_contact_file():
     if not Path("contacts.json").exists():
@@ -81,6 +82,10 @@ def create_backup():
         return "The contacts book doesn't exist."
     with Path("contacts.json").open() as f:
         contacts = json.load(f)
-    with Path("backup.txt").open("w") as f:
-        json.dump(contacts, f, indent="\t")
-    return "Backup file created as 'backup.txt' file."
+    time = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M")
+    backup = str(time)+".txt"
+    with open(Path(backup), "w", encoding="utf-8") as f:
+        for line in contacts.items():
+            f.write(str(line))
+            f.write("\n")
+    return f"Backup file created as '{time}.txt' file."
