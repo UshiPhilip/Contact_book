@@ -7,6 +7,10 @@ def create_a_contact_file():
         with open("contacts.json", "w", encoding="utf-8") as f:
             json.dump({ }, f, indent="\t")
 
+def get_contacts():
+    with Path("contacts.json").open() as f:
+        return json.load(f)
+
 def show_manu():
     return """
     1. Add contact
@@ -20,8 +24,7 @@ def show_manu():
 """
 
 def add_contact(name, number, email):
-    with Path("contacts.json").open() as f:
-        contacts = json.load(f)
+    contacts = get_contacts()
     for n in contacts.keys():
         if n == name:
             return f"{name} is already exist."
@@ -32,21 +35,18 @@ def add_contact(name, number, email):
     return f"{name} added successfully."
 
 def show_all_contacts():
-    with Path("contacts.json").open() as f:
-        contacts = json.load(f)
+    contacts = get_contacts()
     return contacts if contacts else "The contacts book is empty..."
 
 def search_contact(name):
-    with Path("contacts.json").open() as f:
-        contacts = json.load(f)
+    contacts = get_contacts()
     try:
         return f"{name}'s phone number is: {contacts[name]}"
     except:
         return f"I can't find {name}'s number..."
 
 def delete_contact(name):
-    with Path("contacts.json").open() as f:
-        contacts = json.load(f)
+    contacts = get_contacts()
     try:
         del contacts[name]
         with Path("contacts.json").open("w") as f:
@@ -58,8 +58,7 @@ def delete_contact(name):
         return "delete contact failed..."
 
 def edit_contact(name, number):
-    with Path("contacts.json").open() as f:
-        contacts = json.load(f)
+    contacts = get_contacts()
     if name not in contacts.keys():
         return f"I can't find {name} in the contacts book"
     try:
@@ -71,8 +70,7 @@ def edit_contact(name, number):
         return f"Edit {name}'s number failed..."
 
 def sorting_by_alphabet():
-    with Path("contacts.json").open() as f:
-        contacts = json.load(f)
+    contacts = get_contacts()
     contacts = sorted(contacts.items())
     contacts = dict(contacts)
     return contacts if contacts else "The contacts book is empty..."
@@ -80,8 +78,7 @@ def sorting_by_alphabet():
 def create_backup():
     if not Path("contacts.json").exists():
         return "The contacts book doesn't exist."
-    with Path("contacts.json").open() as f:
-        contacts = json.load(f)
+    contacts = get_contacts()
     time = datetime.datetime.now().strftime("%d-%m-%Y_%H-%M")
     backup = str(time)+".txt"
     with open(Path(backup), "w", encoding="utf-8") as f:
